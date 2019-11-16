@@ -1,6 +1,6 @@
 import { AlertActionType, AlertActionTypes, AlertMessage } from '../constants';
 
-type AlertState = {
+export type AlertState = {
   type: 'alert-success' | 'alert-danger';
   message: AlertMessage;
 } | {};

@@ -26,9 +26,21 @@
       "error",
       "always-multiline"
     ],
+    "eol-last": [
+      "error",
+      "always"
+    ],
     "jsx-quotes": [
       "error",
       "prefer-double"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 2,
+        "maxBOF": 0,
+        "maxEOF": 1
+      }
     ],
     "semi": "error",
     "@typescript-eslint/explicit-function-return-type": "off"

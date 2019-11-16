@@ -1,15 +1,15 @@
 import { AlertActionType, AlertActionTypes, AlertMessage } from '../constants';
 
-type AlertActionCreator<P = AlertMessage> = (p: P) => AlertActionTypes;
+type AlertActionCreator<M = AlertMessage> = (message: M) => AlertActionTypes;
 
 const success: AlertActionCreator = (message) => ({
   type: AlertActionType.SUCCESS,
-  message,
+  message: String(message),
 });
 
 const error: AlertActionCreator = (message) => ({
   type: AlertActionType.ERROR,
-  message,
+  message: String(message),
 });
 
 
