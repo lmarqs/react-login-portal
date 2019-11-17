@@ -35,10 +35,10 @@ async function register(user: User) {
 
   const response = await fetch("/users/register", requestOptions);
 
-  handleResponse<void>(response);
+  await handleResponse(response);
 }
 
-function handleResponse<P extends object | void>(response: Response) {
+function handleResponse<P = void>(response: Response): Promise<P> {
   if (!response.ok) {
     return Promise.reject(response.statusText);
   }

@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router, Redirect } from "react-router-dom";
+import { Route, Router } from "react-router-dom";
 import { connect, MapStateToPropsParam, MapDispatchToProps } from "react-redux";
 
 import { history } from "./helpers";
@@ -50,7 +50,6 @@ class App extends React.Component<Props, State> {
             <PrivateRoute exact path="/" component={HomePage} />
             <Route exact path="/login" component={LoginPage} />
             <Route exact path="/register" component={RegisterPage} />
-            <Redirect from="*" to="/" />
           </div>
         </Router>
         <Snackbar show={!!alert}>
