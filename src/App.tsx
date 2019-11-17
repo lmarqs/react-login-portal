@@ -2,8 +2,6 @@ import React from "react";
 import { Route, Router, Redirect } from "react-router-dom";
 import { connect, MapStateToPropsParam, MapDispatchToProps } from "react-redux";
 
-import "./App.css";
-
 import { history } from "./helpers";
 import { alertActions } from "./actions";
 import { AppState } from "./reducers";
