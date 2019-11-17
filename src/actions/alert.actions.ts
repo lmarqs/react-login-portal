@@ -13,7 +13,7 @@ const error: AlertActionCreator = (message) => ({
 });
 
 
-const clear: AlertActionCreator = () => ({
+const clear: AlertActionCreator<void> = () => ({
   type: AlertActionType.CLEAR,
 });
 

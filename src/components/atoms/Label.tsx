@@ -1,9 +1,8 @@
 import React from 'react';
 
-type Props =
+type Props = React.PropsWithChildren<
   & React.LabelHTMLAttributes<HTMLLabelElement>
   & React.ClassAttributes<HTMLLabelElement>
-  & { children: React.ReactNode | React.ReactNode[] }
-  ;
+>;
 
 export const Label = (props: Props) => <label {...props} />;
