@@ -5,8 +5,6 @@ import { users } from './users';
 export const handleUsersAuthenticate: FakeApiHandler = async (body) => {
   const params: User = JSON.parse(body);
 
-  console.log(users);
-
   const user = users.find(user => {
     return (
       user.username === params.username &&

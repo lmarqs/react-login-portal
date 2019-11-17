@@ -52,7 +52,7 @@ class App extends React.Component<Props, State> {
             <Switch>
               <PrivateRoute exact path="/" component={HomePage} />
               <Route exact path="/login" component={LoginPage} />
-              <Route path="/register" component={RegisterPage} />
+              <Route exact path="/register" component={RegisterPage} />
               <Redirect from="*" to="/" />
             </Switch>
           </Router>
