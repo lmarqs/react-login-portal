@@ -51,6 +51,7 @@ const register = (user: User): AppThunkAction => {
       await userService.register(user);
       dispatch(success(user));
       history.push('/');
+      dispatch(alertActions.success("Registration successful"));
     } catch (e) {
       dispatch(failure());
       dispatch(alertActions.error(e));

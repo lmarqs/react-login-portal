@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router, Switch } from "react-router-dom";
+import { Route, Router, Redirect, Switch } from "react-router-dom";
 import { connect, MapStateToPropsParam, MapDispatchToProps } from "react-redux";
 
 import "./App.css";
@@ -36,7 +36,7 @@ interface State {
 
 class App extends React.Component<Props, State> {
   public componentDidMount() {
-    history.listen((location, action) => this.onDismissAlert());
+    history.listen(() => this.onDismissAlert());
   }
 
   private onDismissAlert = () => this.props.dismissAlert();
@@ -45,18 +45,21 @@ class App extends React.Component<Props, State> {
 
     const { alert } = this.props;
 
-
     return (
       <div className="container">
         <div className="col-sm-8 col-sm-offset-2">
           <Router history={history}>
             <Switch>
-              <Route exact path="/">
-                <PrivateRoute component={HomePage} />
-              </Route>
-              <Route exact path="/login">
+              <PrivateRoute exact path="/">
+                <HomePage />
+              </PrivateRoute>
+              <Route path="/login">
                 <LoginPage />
               </Route>
+              <Route path="/register">
+                <RegisterPage />
+              </Route>
+              <Redirect from="*" to="/" />
             </Switch>
           </Router>
         </div>

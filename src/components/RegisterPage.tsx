@@ -2,22 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { connect, MapStateToPropsParam, MapDispatchToProps } from "react-redux";
 
-import { userActions } from "../actions";
-import { AppState } from "../reducers";
-
 import { Input, Label, ProgressIndicator } from "./atoms";
 import { Field } from "./molecules";
+import { userActions } from "../actions";
+import { AppState } from "../reducers";
 
 interface OwnProps {
 }
 
 type StateProps = {
-  loggingIn?: boolean;
+  registering?: boolean;
 };
 
 type DispatchProps = {
-  login?: typeof userActions.login;
-  logout?: typeof userActions.logout;
+  register?: typeof userActions.register;
 }
 
 type Props = OwnProps & StateProps & DispatchProps;
@@ -28,18 +26,12 @@ interface State {
   submitted: boolean;
 }
 
-class LoginPage extends React.Component<Props, State> {
+class RegisterPage extends React.Component<Props, State> {
   public state: State = {
     username: "",
     password: "",
     submitted: false,
   };
-
-  public componentDidMount() {
-    if (this.props.logout) {
-      this.props.logout();
-    }
-  }
 
   private handleUsernameChange = (e: React.SyntheticEvent<HTMLInputElement>) =>
     this.setState({ username: e.currentTarget.value });
@@ -50,24 +42,23 @@ class LoginPage extends React.Component<Props, State> {
   private handleSubmit = (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (this.props.loggingIn || !this.props.login) {
+    if (!this.props.register) {
       return;
     }
 
     this.setState({ submitted: true });
     const { username, password } = this.state;
     if (username && password) {
-      this.props.login(username, password);
+      this.props.register({ username, password });
     }
-  };
+  }
 
-  render() {
-    const { loggingIn } = this.props;
+  public render() {
+    const { registering } = this.props;
     const { username, password, submitted } = this.state;
-
     return (
       <div className="col-md-6 col-md-offset-3">
-        <h2>Login</h2>
+        <h2>Register</h2>
         <form name="form" onSubmit={this.handleSubmit}>
           <Field hasError={submitted && !username} error="Username is required">
             <Label htmlFor="username">Username</Label>
@@ -78,9 +69,9 @@ class LoginPage extends React.Component<Props, State> {
             <Input type="password" id="password" className="password" onChange={this.handlePasswordChange} value={password} />
           </Field>
           <div className="form-group">
-            <button className="btn btn-primary">Login</button>
-            {loggingIn && <ProgressIndicator height="32" />}
-            <Link to="/register" className="btn btn-link">Register</Link>
+            <button className="btn btn-primary">Register</button>
+            {registering && <ProgressIndicator height="32" />}
+            <Link to="/login" className="btn btn-link">Cancel</Link>
           </div>
         </form>
       </div>
@@ -89,16 +80,15 @@ class LoginPage extends React.Component<Props, State> {
 }
 
 const mapStateToProps: MapStateToPropsParam<StateProps, OwnProps, AppState> = state => {
-  const { loggingIn } = state.authentication;
-  return { loggingIn };
+  const { registering } = state.registration;
+  return { registering };
 };
 
 const mapDispatchToProps: MapDispatchToProps<DispatchProps, OwnProps> = {
-  login: userActions.login,
-  logout: userActions.logout,
+  register: userActions.register,
 };
 
-const ConnectedLoginPage = connect(mapStateToProps, mapDispatchToProps)(LoginPage);
+const ConnectedRegisterPage = connect(mapStateToProps, mapDispatchToProps)(RegisterPage);
 
-export { ConnectedLoginPage as LoginPage };
-export { LoginPage as TestLoginPage };
+export { ConnectedRegisterPage as RegisterPage };
+export { RegisterPage as TestRegisterPage };
