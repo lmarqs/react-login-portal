@@ -50,15 +50,9 @@ class App extends React.Component<Props, State> {
         <div className="col-sm-8 col-sm-offset-2">
           <Router history={history}>
             <Switch>
-              <PrivateRoute exact path="/">
-                <HomePage />
-              </PrivateRoute>
-              <Route path="/login">
-                <LoginPage />
-              </Route>
-              <Route path="/register">
-                <RegisterPage />
-              </Route>
+              <PrivateRoute exact path="/" component={HomePage} />
+              <Route exact path="/login" component={LoginPage} />
+              <Route path="/register" component={RegisterPage} />
               <Redirect from="*" to="/" />
             </Switch>
           </Router>
@@ -68,7 +62,7 @@ class App extends React.Component<Props, State> {
             <Alert onDismiss={this.onDismissAlert} type={alert.type}>{alert.message}</Alert>
           )}
         </Snackbar>
-      </div>
+      </div >
     );
   }
 }
