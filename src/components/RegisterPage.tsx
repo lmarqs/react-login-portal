@@ -62,11 +62,11 @@ class RegisterPage extends React.Component<Props, State> {
         <form name="form" onSubmit={this.handleSubmit}>
           <Field hasError={submitted && !username} error="Username is required">
             <Label htmlFor="username">Username</Label>
-            <Input type="text" id="username" className="username" onChange={this.handleUsernameChange} value={username} />
+            <Input type="text" id="username" extraClassName="username" onChange={this.handleUsernameChange} value={username} />
           </Field>
           <Field hasError={submitted && !password} error="Password is required">
             <Label htmlFor="password">Password</Label>
-            <Input type="password" id="password" className="password" onChange={this.handlePasswordChange} value={password} />
+            <Input type="password" id="password" extraClassName="password" onChange={this.handlePasswordChange} value={password} />
           </Field>
           <div className="form-group">
             <button className="btn btn-primary">Register</button>
