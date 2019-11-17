@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Router, Redirect, Switch } from "react-router-dom";
+import { Route, Router, Redirect } from "react-router-dom";
 import { connect, MapStateToPropsParam, MapDispatchToProps } from "react-redux";
 
 import "./App.css";
@@ -47,22 +47,20 @@ class App extends React.Component<Props, State> {
 
     return (
       <div className="container">
-        <div className="col-sm-8 col-sm-offset-2">
-          <Router history={history}>
-            <Switch>
-              <PrivateRoute exact path="/" component={HomePage} />
-              <Route exact path="/login" component={LoginPage} />
-              <Route exact path="/register" component={RegisterPage} />
-              <Redirect from="*" to="/" />
-            </Switch>
-          </Router>
-        </div>
+        <Router history={history}>
+          <div className="col-sm-8 col-sm-offset-2">
+            <PrivateRoute exact path="/" component={HomePage} />
+            <Route exact path="/login" component={LoginPage} />
+            <Route exact path="/register" component={RegisterPage} />
+            <Redirect from="*" to="/" />
+          </div>
+        </Router>
         <Snackbar show={!!alert}>
           {alert && (
             <Alert onDismiss={this.onDismissAlert} type={alert.type}>{alert.message}</Alert>
           )}
         </Snackbar>
-      </div >
+      </div>
     );
   }
 }
