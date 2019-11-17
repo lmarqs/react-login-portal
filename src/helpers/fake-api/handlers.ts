@@ -26,17 +26,18 @@ export const handleUsersAuthenticate: FakeApiHandler = async (body) => {
 };
 
 export const handleUserRegister: FakeApiHandler = async (body: string) => {
-  const newUser: User = JSON.parse(body);
+  const user: User = JSON.parse(body);
 
-  const duplicateUser = users.some(user => user.username === newUser.username);
+  const duplicateUser = users.some(({ username }) => username === user.username);
 
   if (duplicateUser) {
-    throw new Error(`Username "${newUser.username}" is already taken`);
+    throw new Error(`Username "${user.username}" is already taken`);
   }
 
-  newUser.id = Math.max(0, ...users.map(user => user.id || -1)) + 1;
-
-  users.push(newUser);
+  users.push({
+    id: Math.max(0, ...users.map(user => user.id || -1)) + 1,
+    ...user,
+  });
 
   localStorage.setItem("users", JSON.stringify(users));
 };
