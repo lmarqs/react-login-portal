@@ -29,7 +29,7 @@
     "@types/react-redux": "^5.0.21",
     "@types/react-router-dom": "^4.3.5",
     "@types/redux-logger": "^3.0.7",
-    "@typescript-eslint/eslint-plugin": "^2.7.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
     "@typescript-eslint/parser": "^2.7.0",
     "chai": "^4.1.2",
     "create-react-app": "^1.4.3",
